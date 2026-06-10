@@ -1,0 +1,13 @@
+{% extends 'vinoteca/base.html' %}
+{% block title %}Eliminar {{ bodega.nombre }} — {{ nombre_vinoteca }}{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-lg shadow p-6">
+    <h1 class="text-2xl font-bold text-red-800 mb-4">Eliminar bodega</h1>
+    <p class="text-gray-700 mb-6">¿Confirmás que querés eliminar <strong>{{ bodega.nombre }}</strong>?</p>
+    <form method="post" class="flex gap-3">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900">Eliminar</button>
+        <a href="{% url 'detalle_bodega' bodega.pk %}" class="text-gray-600 px-4 py-2 hover:underline">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

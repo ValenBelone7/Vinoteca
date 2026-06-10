@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Vino
+from .models import Bodega, Vino
 
 INPUT_CLASS = 'w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-red-500'
 
@@ -22,4 +22,17 @@ class VinoForm(forms.ModelForm):
             'stock': forms.NumberInput(attrs={'class': INPUT_CLASS}),
             'foto': forms.FileInput(attrs={'class': INPUT_CLASS}),
             'descripcion': forms.Textarea(attrs={'class': INPUT_CLASS, 'rows': 4}),
+        }
+
+
+class BodegaForm(forms.ModelForm):
+    class Meta:
+        model = Bodega
+        fields = ['nombre', 'pais', 'region', 'descripcion', 'logo']
+        widgets = {
+            'nombre': forms.TextInput(attrs={'class': INPUT_CLASS}),
+            'pais': forms.TextInput(attrs={'class': INPUT_CLASS}),
+            'region': forms.TextInput(attrs={'class': INPUT_CLASS}),
+            'descripcion': forms.Textarea(attrs={'class': INPUT_CLASS, 'rows': 4}),
+            'logo': forms.FileInput(attrs={'class': INPUT_CLASS}),
         }

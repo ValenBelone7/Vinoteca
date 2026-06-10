@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, redirect, render
 
-from .forms import VinoForm
+from .forms import BodegaForm, VinoForm
 from .models import Bodega, Vino
 
 
@@ -55,3 +55,39 @@ def eliminar_vino(request, pk):
 def lista_bodegas(request):
     bodegas = Bodega.objects.all()
     return render(request, 'vinoteca/lista_bodegas.html', {'bodegas': bodegas})
+
+
+def detalle_bodega(request, pk):
+    bodega = get_object_or_404(Bodega, pk=pk)
+    return render(request, 'vinoteca/detalle_bodega.html', {'bodega': bodega})
+
+
+def crear_bodega(request):
+    if request.method == 'POST':
+        form = BodegaForm(request.POST, request.FILES)
+        if form.is_valid():
+            bodega = form.save()
+            return redirect('detalle_bodega', pk=bodega.pk)
+    else:
+        form = BodegaForm()
+    return render(request, 'vinoteca/crear_bodega.html', {'form': form})
+
+
+def editar_bodega(request, pk):
+    bodega = get_object_or_404(Bodega, pk=pk)
+    if request.method == 'POST':
+        form = BodegaForm(request.POST, request.FILES, instance=bodega)
+        if form.is_valid():
+            form.save()
+            return redirect('detalle_bodega', pk=pk)
+    else:
+        form = BodegaForm(instance=bodega)
+    return render(request, 'vinoteca/editar_bodega.html', {'form': form, 'bodega': bodega})
+
+
+def eliminar_bodega(request, pk):
+    bodega = get_object_or_404(Bodega, pk=pk)
+    if request.method == 'POST':
+        bodega.delete()
+        return redirect('lista_bodegas')
+    return render(request, 'vinoteca/eliminar_bodega.html', {'bodega': bodega})

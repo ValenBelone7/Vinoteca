@@ -1,16 +1,29 @@
 {% extends 'vinoteca/base.html' %}
 {% block title %}Bodegas — {{ nombre_vinoteca }}{% endblock %}
 {% block content %}
-<h1 class="text-3xl font-bold text-red-800 mb-6">Bodegas</h1>
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-red-800">Bodegas</h1>
+    <a href="{% url 'crear_bodega' %}" class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900 text-sm">
+        + Nueva bodega
+    </a>
+</div>
 {% if bodegas %}
-<ul class="space-y-3">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
     {% for bodega in bodegas %}
-    <li class="bg-white rounded-lg shadow px-4 py-3">
-        <span class="font-medium">{{ bodega.nombre }}</span>
-        <span class="text-gray-600 text-sm ml-2">{{ bodega.pais }}{% if bodega.region %}, {{ bodega.region }}{% endif %}</span>
-    </li>
+    <a href="{% url 'detalle_bodega' bodega.pk %}"
+       class="bg-white rounded-lg shadow flex overflow-hidden hover:shadow-md transition">
+        {% if bodega.logo %}
+        <img src="{{ bodega.logo.url }}" alt="{{ bodega.nombre }}" class="w-24 h-24 object-cover flex-shrink-0">
+        {% else %}
+        <div class="w-24 h-24 bg-red-100 flex items-center justify-center text-2xl flex-shrink-0">🏭</div>
+        {% endif %}
+        <div class="p-4">
+            <p class="font-medium">{{ bodega.nombre }}</p>
+            <p class="text-sm text-gray-600">{{ bodega.pais }}{% if bodega.region %}, {{ bodega.region }}{% endif %}</p>
+        </div>
+    </a>
     {% endfor %}
-</ul>
+</div>
 {% else %}
 <p class="text-gray-600">No hay bodegas cargadas todavía.</p>
 {% endif %}
