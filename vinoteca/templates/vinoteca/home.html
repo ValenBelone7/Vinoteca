@@ -1,6 +1,30 @@
 {% extends 'vinoteca/base.html' %}
 {% block title %}Inicio — {{ nombre_vinoteca }}{% endblock %}
 {% block content %}
-<h1 class="text-3xl font-bold text-red-800 mb-4">Bienvenido a {{ nombre_vinoteca }}</h1>
-<p class="text-gray-600">Usá el menú para explorar nuestra selección de vinos y bodegas.</p>
+<h1 class="text-3xl font-bold text-red-800 mb-2">Bienvenido a {{ nombre_vinoteca }}</h1>
+<p class="text-gray-600 mb-8">Tenemos {{ total_vinos }} vino{{ total_vinos|pluralize }} en nuestra selección.</p>
+
+{% if vinos_destacados %}
+<section>
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Vinos destacados</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {% for vino in vinos_destacados %}
+        <a href="{% url 'detalle_vino' vino.pk %}"
+           class="bg-white rounded-lg shadow overflow-hidden hover:shadow-md transition">
+            {% if vino.foto %}
+            <img src="{{ vino.foto.url }}" alt="{{ vino.nombre }}" class="w-full h-40 object-cover">
+            {% else %}
+            <div class="w-full h-40 bg-red-100 flex items-center justify-center text-4xl">🍷</div>
+            {% endif %}
+            <div class="p-4">
+                <p class="font-medium">{{ vino.nombre }}</p>
+                <p class="text-sm text-gray-600">{{ vino.bodega }} · ${{ vino.precio }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% else %}
+<p class="text-gray-600">Explorá nuestra selección desde el menú.</p>
+{% endif %}
 {% endblock %}
