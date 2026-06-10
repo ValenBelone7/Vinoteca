@@ -19,6 +19,26 @@
 
 ---
 
+## Estado del proyecto
+
+> Última actualización: **10 de junio de 2026** · Rama de integración: `develop` @ `dcf2c2d`
+
+| Parte | Rama | Estado | Merge en `develop` |
+|-------|------|--------|-------------------|
+| 1 — Setup y modelos | `feature/parte-1-modelos` | ✅ Completada | `f034272` |
+| 2 — Panel de admin | `feature/parte-2-admin` | ✅ Completada | `4b7e515` |
+| 3 — Autenticación | `feature/parte-3-auth` | ✅ Completada | `e6780cd` |
+| 4 — CRUD vinos | `feature/parte-4-crud-vinos` | ✅ Completada | `dc166c8` |
+| 4 — CRUD bodegas | `feature/parte-4-crud-bodegas` | ✅ Completada | `e7fd0cd` |
+| 5 — Permisos y grupos | `feature/parte-5-permisos` | ⏳ Pendiente | — |
+| 6 — Context processor | `feature/parte-6-context-processor` | ✅ Completada | `dcf2c2d` |
+| 7 — Templates y Tailwind | `feature/parte-7-templates` | 🔶 Parcial | integrado en partes 1, 3, 4 y 6 |
+| 8 — README y entrega | `feature/parte-8-readme` | ⏳ Pendiente | — |
+
+**Siguiente paso:** Parte 5 — crear grupos `Administradores` / `Empleados`, proteger vistas con `@login_required` y `@permission_required`, y condicionar botones en templates.
+
+---
+
 ## Metodología de trabajo con Git
 
 ### Estructura de ramas
@@ -89,8 +109,8 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ## Partes del proyecto
 
-### Parte 1 — Setup del proyecto y modelos
-**Rama:** `feature/parte-1-modelos`
+### Parte 1 — Setup del proyecto y modelos ✅
+**Rama:** `feature/parte-1-modelos` · **Merge:** `f034272`
 
 **Qué hacer:**
 - Crear el proyecto: `vinotecaproject/` + apps `vinoteca/` y `usuarios/`
@@ -111,8 +131,8 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ---
 
-### Parte 2 — Panel de administración
-**Rama:** `feature/parte-2-admin`
+### Parte 2 — Panel de administración ✅
+**Rama:** `feature/parte-2-admin` · **Merge:** `4b7e515`
 **Depende de:** Parte 1 mergeada en develop
 
 **Qué hacer:**
@@ -129,8 +149,8 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ---
 
-### Parte 3 — Autenticación (registro, login, logout)
-**Rama:** `feature/parte-3-auth`
+### Parte 3 — Autenticación (registro, login, logout) ✅
+**Rama:** `feature/parte-3-auth` · **Merge:** `e6780cd`
 **Depende de:** Parte 1 mergeada en develop
 
 **Qué hacer:**
@@ -146,8 +166,8 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ---
 
-### Parte 4 — CRUD de Vino y Bodega
-**Rama:** `feature/parte-4-crud`
+### Parte 4 — CRUD de Vino y Bodega ✅
+**Ramas:** `feature/parte-4-crud-vinos` · `feature/parte-4-crud-bodegas` · **Merge:** `dc166c8` / `e7fd0cd`
 **Depende de:** Partes 1 y 3 mergeadas en develop
 
 **Vinos** — FBV siguiendo el patrón GET/POST de django-gym:
@@ -170,7 +190,7 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ---
 
-### Parte 5 — Permisos y grupos
+### Parte 5 — Permisos y grupos ⏳
 **Rama:** `feature/parte-5-permisos`
 **Depende de:** Partes 3 y 4 mergeadas en develop
 
@@ -196,8 +216,8 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ---
 
-### Parte 6 — Context processor
-**Rama:** `feature/parte-6-context-processor`
+### Parte 6 — Context processor ✅
+**Rama:** `feature/parte-6-context-processor` · **Merge:** `dcf2c2d`
 **Depende de:** Parte 1 mergeada en develop
 
 **Qué hacer:**
@@ -217,9 +237,13 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ---
 
-### Parte 7 — Templates y estilos con Tailwind
-**Rama:** `feature/parte-7-templates`
+### Parte 7 — Templates y estilos con Tailwind 🔶
+**Rama:** `feature/parte-7-templates` (opcional — la mayor parte ya está en develop)
 **Depende de:** Partes 3, 4 y 6 mergeadas en develop
+
+**Hecho:** `base.html` con Tailwind CDN y navbar, templates CRUD y auth estilizados, imágenes en listados/detalle, `MEDIA_URL` en `urls.py`.
+
+**Falta:** revisión final de consistencia visual y rama dedicada si el profe la exige por separado.
 
 **Qué hacer:**
 - `vinoteca/templates/vinoteca/base.html`:
@@ -241,7 +265,7 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ---
 
-### Parte 8 — README y entrega final
+### Parte 8 — README y entrega final ⏳
 **Rama:** `feature/parte-8-readme`
 **Depende de:** Todo mergeado en develop y funcionando
 
@@ -266,20 +290,20 @@ chore: configura MEDIA_ROOT y variables de entorno
 ## Checklist final antes de entregar
 
 ### Base de datos
-- [ ] Al menos 6 modelos (`Usuario`, `Bodega`, `Varietal`, `Categoria`, `Vino`, `Proveedor`, `Compra`, `ItemCompra`)
-- [ ] Relaciones entre modelos (FK y M2M)
-- [ ] Al menos 1 `ImageField` (en `Vino` y en `Bodega`)
+- [x] Al menos 6 modelos (`Usuario`, `Bodega`, `Varietal`, `Categoria`, `Vino`, `Proveedor`, `Compra`, `ItemCompra`)
+- [x] Relaciones entre modelos (FK y M2M)
+- [x] Al menos 1 `ImageField` (en `Vino` y en `Bodega`)
 
 ### Usuarios
-- [ ] `CustomUser` con `AbstractUser`
-- [ ] Registro desde template
-- [ ] Login y logout desde templates
+- [x] `CustomUser` con `AbstractUser`
+- [x] Registro desde template
+- [x] Login y logout desde templates
 
 ### Vistas
-- [ ] Navegación completa por el sistema
-- [ ] CRUD completo de `Vino` (5 vistas)
-- [ ] CRUD completo de `Bodega` (5 vistas)
-- [ ] Control total desde el panel de admin con filtros, ordenamiento y búsqueda
+- [x] Navegación completa por el sistema
+- [x] CRUD completo de `Vino` (5 vistas)
+- [x] CRUD completo de `Bodega` (5 vistas)
+- [x] Control total desde el panel de admin con filtros, ordenamiento y búsqueda
 
 ### Permisos
 - [ ] Al menos 2 grupos de usuarios con permisos diferenciados
@@ -287,12 +311,12 @@ chore: configura MEDIA_ROOT y variables de entorno
 - [ ] Vistas de read protegidas con `@login_required`
 
 ### Otros
-- [ ] Al menos 1 context processor propio en uso
-- [ ] Carga de imágenes funcional (admin y formularios)
-- [ ] Estilos con Tailwind CSS aplicados consistentemente
+- [x] Al menos 1 context processor propio en uso
+- [x] Carga de imágenes funcional (admin y formularios)
+- [x] Estilos con Tailwind CSS aplicados consistentemente
 
 ### Entrega
-- [ ] Repositorio en GitHub en rama `main`
+- [ ] Repositorio en GitHub en rama `main` (rama `develop` actualizada en remoto)
 - [ ] `README.md` con capturas del proyecto funcionando
 - [ ] Fecha límite: **miércoles 24 de junio de 2026**
 
