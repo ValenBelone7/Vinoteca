@@ -1,0 +1,30 @@
+{% extends 'vinoteca/base.html' %}
+{% block title %}Registrarse — {{ nombre_vinoteca }}{% endblock %}
+{% block content %}
+<div class="max-w-md mx-auto bg-white rounded-lg shadow p-6">
+    <h1 class="text-2xl font-bold text-red-800 mb-6">Crear cuenta</h1>
+    <form method="post" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+        {% for field in form %}
+        <div>
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+                {{ field.label }}
+            </label>
+            {{ field }}
+            {% if field.errors %}
+            <p class="text-red-600 text-sm mt-1">{{ field.errors|striptags }}</p>
+            {% endif %}
+            {% if field.help_text %}
+            <p class="text-gray-500 text-xs mt-1">{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit" class="w-full bg-red-800 text-white py-2 rounded hover:bg-red-900">
+            Registrarse
+        </button>
+    </form>
+    <p class="text-sm text-gray-600 mt-4 text-center">
+        ¿Ya tenés cuenta? <a href="{% url 'login' %}" class="text-red-800 hover:underline">Ingresá</a>
+    </p>
+</div>
+{% endblock %}
