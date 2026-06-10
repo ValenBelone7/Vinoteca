@@ -1,0 +1,31 @@
+{% extends 'vinoteca/base.html' %}
+{% block title %}Vinos — {{ nombre_vinoteca }}{% endblock %}
+{% block content %}
+<div class="flex justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-red-800">Vinos</h1>
+    <a href="{% url 'crear_vino' %}" class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900 text-sm">
+        + Nuevo vino
+    </a>
+</div>
+{% if vinos %}
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {% for vino in vinos %}
+    <a href="{% url 'detalle_vino' vino.pk %}"
+       class="bg-white rounded-lg shadow flex overflow-hidden hover:shadow-md transition">
+        {% if vino.foto %}
+        <img src="{{ vino.foto.url }}" alt="{{ vino.nombre }}" class="w-24 h-24 object-cover flex-shrink-0">
+        {% else %}
+        <div class="w-24 h-24 bg-red-100 flex items-center justify-center text-2xl flex-shrink-0">🍷</div>
+        {% endif %}
+        <div class="p-4">
+            <p class="font-medium">{{ vino.nombre }} ({{ vino.anio }})</p>
+            <p class="text-sm text-gray-600">{{ vino.bodega }}</p>
+            <p class="text-sm text-red-800 font-semibold mt-1">${{ vino.precio }}</p>
+        </div>
+    </a>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-gray-600">No hay vinos cargados todavía.</p>
+{% endif %}
+{% endblock %}

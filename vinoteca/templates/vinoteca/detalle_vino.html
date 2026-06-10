@@ -1,0 +1,37 @@
+{% extends 'vinoteca/base.html' %}
+{% block title %}{{ vino.nombre }} — {{ nombre_vinoteca }}{% endblock %}
+{% block content %}
+<div class="bg-white rounded-lg shadow overflow-hidden">
+    <div class="sm:flex">
+        {% if vino.foto %}
+        <img src="{{ vino.foto.url }}" alt="{{ vino.nombre }}" class="w-full sm:w-64 h-64 object-cover">
+        {% else %}
+        <div class="w-full sm:w-64 h-64 bg-red-100 flex items-center justify-center text-6xl">🍷</div>
+        {% endif %}
+        <div class="p-6 flex-1">
+            <h1 class="text-3xl font-bold text-red-800 mb-2">{{ vino.nombre }}</h1>
+            <p class="text-gray-600 mb-4">{{ vino.bodega }} · {{ vino.anio }}</p>
+            <dl class="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
+                <dt class="text-gray-500">Varietal</dt>
+                <dd>{{ vino.varietal|default:"—" }}</dd>
+                <dt class="text-gray-500">Categoría</dt>
+                <dd>{{ vino.categoria|default:"—" }}</dd>
+                <dt class="text-gray-500">Precio</dt>
+                <dd class="font-semibold text-red-800">${{ vino.precio }}</dd>
+                <dt class="text-gray-500">Stock</dt>
+                <dd>{{ vino.stock }} unidades</dd>
+            </dl>
+            {% if vino.descripcion %}
+            <p class="mt-4 text-gray-700">{{ vino.descripcion }}</p>
+            {% endif %}
+            <div class="flex gap-3 mt-6">
+                <a href="{% url 'editar_vino' vino.pk %}"
+                   class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900 text-sm">Editar</a>
+                <a href="{% url 'eliminar_vino' vino.pk %}"
+                   class="border border-red-800 text-red-800 px-4 py-2 rounded hover:bg-red-50 text-sm">Eliminar</a>
+                <a href="{% url 'lista_vinos' %}" class="text-gray-600 px-4 py-2 text-sm hover:underline">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

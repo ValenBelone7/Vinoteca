@@ -1,0 +1,17 @@
+{% extends 'vinoteca/base.html' %}
+{% block title %}Bodegas — {{ nombre_vinoteca }}{% endblock %}
+{% block content %}
+<h1 class="text-3xl font-bold text-red-800 mb-6">Bodegas</h1>
+{% if bodegas %}
+<ul class="space-y-3">
+    {% for bodega in bodegas %}
+    <li class="bg-white rounded-lg shadow px-4 py-3">
+        <span class="font-medium">{{ bodega.nombre }}</span>
+        <span class="text-gray-600 text-sm ml-2">{{ bodega.pais }}{% if bodega.region %}, {{ bodega.region }}{% endif %}</span>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p class="text-gray-600">No hay bodegas cargadas todavía.</p>
+{% endif %}
+{% endblock %}

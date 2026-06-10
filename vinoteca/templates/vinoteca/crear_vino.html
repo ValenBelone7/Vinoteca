@@ -1,0 +1,23 @@
+{% extends 'vinoteca/base.html' %}
+{% block title %}Nuevo vino — {{ nombre_vinoteca }}{% endblock %}
+{% block content %}
+<h1 class="text-2xl font-bold text-red-800 mb-6">Nuevo vino</h1>
+<form method="post" enctype="multipart/form-data" class="bg-white rounded-lg shadow p-6 space-y-4 max-w-lg">
+    {% csrf_token %}
+    {% for field in form %}
+    <div>
+        <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 mb-1">
+            {{ field.label }}
+        </label>
+        {{ field }}
+        {% if field.errors %}
+        <p class="text-red-600 text-sm mt-1">{{ field.errors|striptags }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+    <div class="flex gap-3 pt-2">
+        <button type="submit" class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900">Guardar</button>
+        <a href="{% url 'lista_vinos' %}" class="text-gray-600 px-4 py-2 hover:underline">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

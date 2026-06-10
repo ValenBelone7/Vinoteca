@@ -1,6 +1,13 @@
 from django.urls import path
+
 from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('vinos/', views.lista_vinos, name='lista_vinos'),
+    path('vinos/crear/', views.crear_vino, name='crear_vino'),
+    path('vinos/<int:pk>/', views.detalle_vino, name='detalle_vino'),
+    path('vinos/editar/<int:pk>/', views.editar_vino, name='editar_vino'),
+    path('vinos/eliminar/<int:pk>/', views.eliminar_vino, name='eliminar_vino'),
+    path('bodegas/', views.lista_bodegas, name='lista_bodegas'),
 ]
