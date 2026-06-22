@@ -25,10 +25,14 @@
             <p class="mt-4 text-gray-700">{{ vino.descripcion }}</p>
             {% endif %}
             <div class="flex gap-3 mt-6">
+                {% if perms.vinoteca.change_vino %}
                 <a href="{% url 'editar_vino' vino.pk %}"
                    class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900 text-sm">Editar</a>
+                {% endif %}
+                {% if perms.vinoteca.delete_vino %}
                 <a href="{% url 'eliminar_vino' vino.pk %}"
                    class="border border-red-800 text-red-800 px-4 py-2 rounded hover:bg-red-50 text-sm">Eliminar</a>
+                {% endif %}
                 <a href="{% url 'lista_vinos' %}" class="text-gray-600 px-4 py-2 text-sm hover:underline">Volver</a>
             </div>
         </div>

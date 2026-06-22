@@ -3,9 +3,11 @@
 {% block content %}
 <div class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-red-800">Vinos</h1>
+    {% if perms.vinoteca.add_vino %}
     <a href="{% url 'crear_vino' %}" class="bg-red-800 text-white px-4 py-2 rounded hover:bg-red-900 text-sm">
         + Nuevo vino
     </a>
+    {% endif %}
 </div>
 {% if vinos %}
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
