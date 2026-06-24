@@ -84,25 +84,29 @@ Otorga solo permisos `view` y `add` sobre: Vino y Compra
 ## Capturas del proyecto
 
 ### 1. Página principal
-![Home page](https://i.imgur.com/placeholder1.png)
+![Home page](screenshots/home-page.png)
 
 ### 2. Lista de vinos
-![Vinos list](https://i.imgur.com/placeholder2.png)
+![Vinos list](screenshots/lista-vinos.png)
 
 ### 3. Detalle de vino
-![Vino detail](https://i.imgur.com/placeholder3.png)
+![Vino detail](screenshots/vino-detalle.png)
 
 ### 4. Formulario de creación de vino
-![Crear vino](https://i.imgur.com/placeholder4.png)
+![Crear vino](screenshots/form-vino.png)
 
 ### 5. Panel de administración
-![Admin panel](https://i.imgur.com/placeholder5.png)
+![Admin panel](screenshots/panel-admin.png)
 
 ### 6. Login y registro
-![Auth pages](https://i.imgur.com/placeholder6.png)
+![Auth pages](screenshots/login.png)
+![Auth pages](screenshots/register.png)
 
 ### 7. Control de permisos
-![Permisos](https://i.imgur.com/placeholder7.png)
+![Permisos](screenshots/bodegas-vista-empleado.png)
+![Permisos](screenshots/bodega-vista-admin.png)
+![Permisos](screenshots/home-vista-user.png)
+
 
 ## Instalación y ejecución
 
