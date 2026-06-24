@@ -24,7 +24,58 @@
         {% endfor %}
     </div>
 </section>
-{% else %}
-<p class="text-gray-600">Explorá nuestra selección desde el menú.</p>
+{% endif %}
+
+{% if user.is_authenticated and compras_recientes %}
+<section class="mt-8">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Tus compras recientes</h2>
+    <div class="bg-white rounded-lg shadow overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Estado</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fecha</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                {% for compra in compras_recientes %}
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">#{{ compra.pk }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {% if compra.estado == 'completada' %}bg-green-100 text-green-800{% elif compra.estado == 'pendiente' %}bg-yellow-100 text-yellow-800{% else %}bg-red-100 text-red-800{% endif %}">
+                            {{ compra.estado }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{{ compra.fecha|date:"d/m/Y H:i" }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${{ compra.total|default:0 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="px-6 py-4 bg-gray-50">
+            <a href="{% url 'mis_compras' %}" class="text-red-800 hover:underline">Ver todas tus compras →</a>
+        </div>
+    </div>
+</section>
+{% elif user.is_authenticated %}
+<section class="mt-8">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Tus compras</h2>
+    <p class="text-gray-600 mb-4">¡Realiza tu primera compra para empezar a acumular puntos!</p>
+    <a href="{% url 'crear_compra' %}" class="bg-red-800 text-white px-6 py-2 rounded hover:bg-red-900">Hacer una compra</a>
+    
+    {% if perms.vinoteca.add_varietal or perms.vinoteca.add_categoria %}
+    <div class="mt-4 text-sm text-gray-600">
+        {% if perms.vinoteca.add_varietal %}
+        <a href="{% url 'crear_varietal' %}" class="text-red-800 hover:underline">Agregar varietal</a>
+        {% endif %}
+        {% if perms.vinoteca.add_categoria %}
+        {% if perms.vinoteca.add_varietal %} | {% endif %}
+        <a href="{% url 'crear_categoria' %}" class="text-red-800 hover:underline">Agregar categoria</a>
+        {% endif %}
+    </div>
+    {% endif %}
+</section>
 {% endif %}
 {% endblock %}

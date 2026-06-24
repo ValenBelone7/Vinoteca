@@ -14,4 +14,8 @@ urlpatterns = [
     path('bodegas/<int:pk>/', views.detalle_bodega, name='detalle_bodega'),
     path('bodegas/editar/<int:pk>/', views.editar_bodega, name='editar_bodega'),
     path('bodegas/eliminar/<int:pk>/', views.eliminar_bodega, name='eliminar_bodega'),
+    path('compras/crear/', views.crear_compra, name='crear_compra'),
+    path('mis-compras/', views.mis_compras, name='mis_compras'),
+    path('varietales/crear/', views.crear_varietal, name='crear_varietal'),
+    path('categorias/crear/', views.crear_categoria, name='crear_categoria'),
 ]

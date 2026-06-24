@@ -21,7 +21,7 @@
 
 ## Estado del proyecto
 
-> Última actualización: **10 de junio de 2026** · Rama de integración: `develop` @ `dcf2c2d`
+> Última actualización: **23 de junio de 2026** · Rama de integración: `develop` @ `c308402`
 
 | Parte | Rama | Estado | Merge en `develop` |
 |-------|------|--------|-------------------|
@@ -30,12 +30,59 @@
 | 3 — Autenticación | `feature/parte-3-auth` | ✅ Completada | `e6780cd` |
 | 4 — CRUD vinos | `feature/parte-4-crud-vinos` | ✅ Completada | `dc166c8` |
 | 4 — CRUD bodegas | `feature/parte-4-crud-bodegas` | ✅ Completada | `e7fd0cd` |
-| 5 — Permisos y grupos | `feature/parte-5-permisos` | ⏳ Pendiente | — |
+| 5 — Permisos y grupos | `feature/parte-5-permisos` | ✅ Completada | `c308402` |
 | 6 — Context processor | `feature/parte-6-context-processor` | ✅ Completada | `dcf2c2d` |
 | 7 — Templates y Tailwind | `feature/parte-7-templates` | 🔶 Parcial | integrado en partes 1, 3, 4 y 6 |
 | 8 — README y entrega | `feature/parte-8-readme` | ⏳ Pendiente | — |
 
-**Siguiente paso:** Parte 5 — crear grupos `Administradores` / `Empleados`, proteger vistas con `@login_required` y `@permission_required`, y condicionar botones en templates.
+**Siguiente paso:** Parte 8 — crear README.md con capturas del proyecto funcionando y preparar entrega final.
+
+**Estado actual:** ✅ Parte 5 completada (permisos y grupos)
+⏳ Parte 8 en progreso (README y entrega final)
+
+**Próximos pasos para Parte 8:**
+1. ✅ Ejecutar el proyecto localmente (funciona)
+2. ✅ Crear superusuario (admin/admin123)
+3. ✅ Crear documentación de gestión de usuarios y permisos (GESTION_USUARIOS_PERMISOS.md)
+4. ✅ Agregar sección de compras recientes al home page
+5. ✅ Agregar varietal y categoria a los formularios de Vino (ya implementado)
+6. ⏳ Tomar capturas del proyecto funcionando
+7. ⏳ Escribir README.md con capturas
+8. ⏳ Hacer merge de feature/parte-8-readme → develop → main
+9. ⏳ Verificar checklist final de entrega
+
+**Documentación adicional creada:**
+- ✅ README.md con descripción completa del proyecto, modelos, relaciones, instrucciones de instalación y capturas (placeholder)
+- ✅ GESTION_USUARIOS_PERMISOS.md con guía completa sobre cómo gestionar usuarios y permisos en Django
+
+**Estado actual del proyecto:**
+- ✅ Todos los modelos implementados (8 modelos)
+- ✅ Todas las relaciones implementadas (FK y M2M)
+- ✅ Al menos 1 ImageField (en Vino y Bodega)
+- ✅ CustomUser con AbstractUser
+- ✅ Registro, login y logout desde templates
+- ✅ Navegación completa por el sistema
+- ✅ CRUD completo de Vino (5 vistas)
+- ✅ CRUD completo de Bodega (5 vistas)
+- ✅ Control total desde el panel de admin con filtros, ordenamiento y búsqueda
+- ✅ Al menos 1 context processor (datos_vinoteca)
+- ✅ Carga de imágenes funcional (admin y formularios)
+- ✅ Estilos con Tailwind CSS aplicados consistentemente
+- ✅ Grupos y permisos implementados (Administradores y Empleados)
+- ✅ Vistas protegidas con @login_required y @permission_required
+- ✅ Botones en templates mostrados/ocultados según permisos
+- ✅ Sección de compras recientes en home page
+
+**Faltan por completar:**
+- ⏳ Capturas del proyecto funcionando
+- ⏳ README.md final con capturas reales
+- ⏳ Merge de feature/parte-8-readme → develop → main
+- ⏳ Verificar checklist final de entrega
+
+**Mejoras implementadas recientemente:**
+- ✅ Agregar varietal y categoria a los formularios de Vino (ya implementado)
+- ✅ Agregar sección de compras recientes al home page
+- ✅ Agregar datos de compras al context processor
 
 ---
 
@@ -190,7 +237,7 @@ chore: configura MEDIA_ROOT y variables de entorno
 
 ---
 
-### Parte 5 — Permisos y grupos ⏳
+### Parte 5 — Permisos y grupos ✅
 **Rama:** `feature/parte-5-permisos`
 **Depende de:** Partes 3 y 4 mergeadas en develop
 
@@ -213,6 +260,8 @@ chore: configura MEDIA_ROOT y variables de entorno
   ```
 
 **Resultado esperado:** CRUD protegido por permisos de grupo; usuarios sin permiso ven 403.
+
+**Implementado en:** commit `c308402` con migración `0002_crear_grupos_permisos.py`, decoradores de permisos en views.py y condicionales de permisos en templates.
 
 ---
 
@@ -285,6 +334,8 @@ chore: configura MEDIA_ROOT y variables de entorno
 - Hacer merge de `feature/parte-8-readme` → `develop` → `main`
 - Verificar checklist final (ver abajo)
 
+**Estado actual:** Parte 5 (permisos y grupos) ya está implementada en `develop` (commit `c308402`). Solo queda implementar Parte 8 (README y entrega).
+
 ---
 
 ## Checklist final antes de entregar
@@ -306,9 +357,9 @@ chore: configura MEDIA_ROOT y variables de entorno
 - [x] Control total desde el panel de admin con filtros, ordenamiento y búsqueda
 
 ### Permisos
-- [ ] Al menos 2 grupos de usuarios con permisos diferenciados
-- [ ] Vistas de create/update/delete protegidas con `@permission_required`
-- [ ] Vistas de read protegidas con `@login_required`
+- [x] Al menos 2 grupos de usuarios con permisos diferenciados
+- [x] Vistas de create/update/delete protegidas con `@permission_required`
+- [x] Vistas de read protegidas con `@login_required`
 
 ### Otros
 - [x] Al menos 1 context processor propio en uso
@@ -319,6 +370,9 @@ chore: configura MEDIA_ROOT y variables de entorno
 - [ ] Repositorio en GitHub en rama `main` (rama `develop` actualizada en remoto)
 - [ ] `README.md` con capturas del proyecto funcionando
 - [ ] Fecha límite: **miércoles 24 de junio de 2026**
+
+**Estado actual:** ✅ Parte 5 completada (permisos y grupos)
+⏳ Parte 8 pendiente (README y entrega final)
 
 ---
 
